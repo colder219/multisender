@@ -26,13 +26,13 @@ requests==2.22.0
 发送邮件
 多个邮箱按','隔开
 
-curl http://multisender.ixiaochuan.cn/api/v1/sender/mail -d 'tos=xxx@163.com,xxx@qq.com&subject=疫情情况报警&content=美国新冠肺炎人数超过1亿，有望在疫苗问世之前，提前实现群体免疫'
+curl http://multisender.xxkeji.com/api/v1/sender/mail -d 'tos=xxx@163.com,xxx@qq.com&subject=疫情情况报警&content=美国新冠肺炎人数超过1亿，有望在疫苗问世之前，提前实现群体免疫'
 
 
 发送短信
 多个手机号按','隔开
 
-curl http://multisender.ixiaochuan.cn/api/v1/sender/sms -d 'tos=18888888888,19999999999&content=你的服务器CPU使用率已超过99%，公安正在抓你的路上'
+curl http://multisender.xxkeji.com/api/v1/sender/sms -d 'tos=18888888888,19999999999&content=你的服务器CPU使用率已超过99%，公安正在抓你的路上'
 
 ### open-falcon 相关配置
 > 写这个当初主要是为了open-falcon的告警发送，这里写写一下open-falcon 上需要做的配置
@@ -40,8 +40,8 @@ curl http://multisender.ixiaochuan.cn/api/v1/sender/sms -d 'tos=18888888888,1999
 编辑 open-falcon/alarm/config/cfg.json
 
 ```
-"sms": "http://multisender.ixiaochuan.cn/api/v1/sender/sms",
-"mail": "http://multisender.ixiaochuan.cn/api/v1/sender/mail",
+"sms": "http://multisender.xxkeji.com/api/v1/sender/sms",
+"mail": "http://multisender.xxkeji.com/api/v1/sender/mail",
 
 ```
 
@@ -65,7 +65,7 @@ curl http://multisender.ixiaochuan.cn/api/v1/sender/sms -d 'tos=18888888888,1999
 
 ### 通用钉钉支持
 > 原生钉钉支持，默认markdown 需要自己定义报警内容
-http://multisender.ixiaochuan.cn/api/v1/sender/dingding
+http://multisender.xxkeji.com/api/v1/sender/dingding
 参数 四个
 * webhook 钉钉报警链接
 * content 报警内容
@@ -74,7 +74,7 @@ http://multisender.ixiaochuan.cn/api/v1/sender/dingding
 
 具体使用如下
 
-    curl http://multisender.ixiaochuan.cn/api/v1/sender/dingding -d 'webhook=https://oapi.dingtalk.com/robot/send?access_token=76e9ed0663cfe37d1603ed115b795eb730009aa60694a332dc832addfd4c3c35&content=今天天气不错&title=测试&contact=18101243983,18613861638'
+    curl http://multisender.xxkeji.com/api/v1/sender/dingding -d 'webhook=https://oapi.dingtalk.com/robot/send?access_token=76e9ed0663cfe37d1603ed115b795eb730009aa60694a332dc832addfd4c3c35&content=今天天气不错&title=测试&contact=18101243983,18613861638'
 
     
 
@@ -83,7 +83,7 @@ http://multisender.ixiaochuan.cn/api/v1/sender/dingding
 #### 短信
 grafana 的报警通道选择webhook, 请求方法选择POST  url填下面的
 
-    http://multisender.ixiaochuan.cn/api/v1/sender/grafanasms
+    http://multisender.xxkeji.com/api/v1/sender/grafanasms
     
 ![](https://raw.githubusercontent.com/colder219/picbed/master/images/xvx%202019-07-17%20AM11.36.42.jpg)
 
@@ -113,14 +113,21 @@ grafana自带的钉钉报警有两个问题
 
 alert channel 选择webhook 然后填写接口地址,最右的已经创建好，直接用就可以了，其它grafana自行添加
 
-     http://multisender.ixiaochuan.cn/api/v1/sender/grafanadingding
+     http://multisender.xxkeji.com/api/v1/sender/grafanadingding
      
-如图
-![](https://raw.githubusercontent.com/colder219/picbed/master/images/xvx%202019-07-17%20AM11.03.29.jpg)
+我现在只要配置三个channel 就行了
+![](https://raw.githubusercontent.com/colder219/picbed/master/images/xvx2020-04-0216.10.59.jpg)
+
+     
+钉钉channel配置如图
+![](https://raw.githubusercontent.com/colder219/picbed/master/images/xvx2020-04-0216.13.02.jpg)
 
 然后在每个报警的alert里面配置机器人
 message 填写机器人地址
-![](https://raw.githubusercontent.com/colder219/picbed/master/images/xvx%202019-07-17%20AM11.00.27.jpg)
+![](https://raw.githubusercontent.com/colder219/picbed/master/images/xvx2020-04-0216.14.40.jpg)
+
+短信和电话大概也一致，号码用逗号隔开
+![](https://raw.githubusercontent.com/colder219/picbed/master/images/xvx2020-04-0216.17.40.jpg)
 
 然后重启alarm 模块就可以了
 
@@ -132,7 +139,7 @@ message 填写机器人地址
     receivers:
 - name: 'web.hook'
   webhook_configs:
-  - url: 'http://multisender.ixiaochuan.cn/api/v1/sender/alertmanager'
+  - url: 'http://multisender.xxkeji.com/api/v1/sender/alertmanager'
 ```
     
 
