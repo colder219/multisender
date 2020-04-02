@@ -81,14 +81,12 @@ http://multisender.xxkeji.com/api/v1/sender/dingding
 ### grafna支持
 
 #### 短信
-grafana 的报警通道选择webhook, 请求方法选择POST  url填下面的
+grafana 的报警通道选择webhook, 请求方法选择POST  url填下面的 具体看下面的钉钉配置的截图
 
     http://multisender.xxkeji.com/api/v1/sender/grafanasms
     
-![](https://raw.githubusercontent.com/colder219/picbed/master/images/xvx%202019-07-17%20AM11.36.42.jpg)
 
 电话号码填在message哪里，多个用逗号隔开
-![](https://raw.githubusercontent.com/colder219/picbed/master/images/xvx%202019-07-17%20AM11.34.48.jpg)
 
 
 #### 电话
